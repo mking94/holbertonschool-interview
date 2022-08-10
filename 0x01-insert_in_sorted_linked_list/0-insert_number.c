@@ -17,6 +17,7 @@
        new->n = number;
        new->next = next->next;
        head->next = new;
+       return &head;
      }
    return null;
  }
