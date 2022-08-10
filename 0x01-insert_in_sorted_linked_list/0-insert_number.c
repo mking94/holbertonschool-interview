@@ -11,6 +11,7 @@
    if(head == null)
      return null;
    while (head->next != NULL)
+   {
      listint_t *next = head->next;
      if(head->n <= number && next->n > number){
        listint_t *new = malloc(sizeof(listint_t)); 
@@ -19,5 +20,6 @@
        head->next = new;
        return &head;
      }
+   }
    return null;
  }
