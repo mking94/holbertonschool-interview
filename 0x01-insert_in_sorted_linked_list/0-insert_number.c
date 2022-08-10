@@ -7,7 +7,7 @@
  * Return: New linked list;
  */
 
-listint_t *insert_node (listint_t **head, int number)
+listint_t *insert_node(listint_t **head, int number)
 {
 if (head == null)
 {
@@ -22,8 +22,8 @@ listint_t *new = malloc(sizeof(listint_t));
 new->n = number;
 new->next = next->next;
 head->next = new;
-return &head;
+return (&head);
 }
 }
-return null;
+return (null);
 }
