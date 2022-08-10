@@ -4,6 +4,7 @@
  * insert_node - Inserts a number into a sorted singly linked list.
  * @head: The list.
  * @number: The input.
+ * Return: New linked list;
  */
 
  listint_t *insert_node(listint_t **head, int number)
