@@ -1,7 +1,9 @@
 #!/usr/bin/python3
 """
-Minimum operations  function
+Minimum operations function
 """
+
+
 def countProcess(num):
     """ Return list of process until n H """
     con = 1
