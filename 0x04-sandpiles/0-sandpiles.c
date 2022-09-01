@@ -48,6 +48,26 @@ return (1);
 }
 
 /**
+ * print_grid - computes the sum of two sandpiles
+ * @grid: sandpiles stable
+ * Return: void function
+ */
+static void print_grid(int grid[3][3])
+{
+printf("=\n");
+for (int i = 0; i < 3; i++)
+{
+for (int j = 0; j < 3; j++)
+{
+if (j)
+printf(" ");
+printf("%d", grid[i][j]);
+}
+printf("\n");
+}
+}
+
+/**
  * change_grids - computes the sum of two sandpiles
  * @grid1: sandpiles stable
  * Return: void function
