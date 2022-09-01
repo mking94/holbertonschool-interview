@@ -10,3 +10,4 @@ void change_grids(int grid1[3][3]);
 int check_grids(int grid1[3][3]);
 
 #endif
+
