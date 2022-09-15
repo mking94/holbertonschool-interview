@@ -1,32 +1,45 @@
 #!/usr/bin/python3
 """
-read stdin line by line and computes metrics
+    Reads stdin line by line and computes metrics:
+    For every 10 lines:
+        - print the status number with the number of times it
+        appears
+        - print the sum of the file sizes
 """
-import sys
-STATUS = {'200': 0, '301': 0,
-          '400': 0, '401': 0,
-          '403': 0, '404': 0,
-          '405': 0, '500': 0}
-size = 0
-lines = 0
-try:
-    for argument in sys.stdin:
-        argumentList = argument.split(" ")
-        if len(argumentList) > 2:
-            status = argumentList[-2]
-            fileSize = int(argumentList[-1])
-            if status in STATUS:
-                STATUS[status] += 1
-            size += fileSize
-            lines += 1
-            if lines == 10:
-                print("File size: {:d}".format(size))
-                for key, value in sorted(STATUS.items()):
-                    if value != 0:
-                        print("{}: {:d}".format(key, value))
-                lines = 0
-finally:
-    print("File size: {:d}".format(size))
-    for key, value in sorted(STATUS.items()):
-        if value != 0:
-            print("{}: {:d}".format(key, value))
+if __name__ == "__main__":
+    import sys
+    import signal
+
+    c = fileSize = 0
+    statCount = {"200": 0, "301": 0, "400": 0, "401": 0, "403": 0,
+                 "404": 0, "405": 0, "500": 0}
+
+    def handleTen(statCount, fileSize):
+        print("File size: {}".format(fileSize))
+        for key in sorted(statCount.keys()):
+            if statCount[key] == 0:
+                continue
+            print("{}: {}".format(key, statCount[key]))
+
+    try:
+        for line in sys.stdin:
+            c += 1
+            split = line.split(" ")
+            try:
+                status = split[-2]
+                fileSize += int(split[-1])
+
+                if status in statCount:
+                    statCount[status] += 1
+            except Exception:
+                pass
+
+            if c % 10 == 0:
+                handleTen(statCount, fileSize)
+
+        else:
+            handleTen(statCount, fileSize)
+
+    except (KeyboardInterrupt, SystemExit):
+        handleTen(statCount, fileSize)
+        raise
