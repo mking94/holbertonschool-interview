@@ -6,8 +6,9 @@
  * @arg1: The array;
  * Retuen: 1 if exist or 0 if not exist.
  */
- 
-int is_exist(int arg0, int[] arg1) {
+
+int is_exist(int arg0, int[] arg1)
+{
     size_t arraylength = sizeof(arg1)/sizeof(arg1[0]);
     for(size_t i = 0; i < arraylength; i++) {
         if(arg0 == arg1[i]) return 1;
