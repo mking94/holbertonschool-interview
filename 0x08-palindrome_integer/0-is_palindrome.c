@@ -28,7 +28,7 @@ int is_palindrome(unsigned long n)
 {
     char str[1 + (int)log10(n)];
     sprintf(str, "%lu", n);
-    if(strcmp(str,strrev(str))==0)
+    if(strcmp(str,strrev(str)) == 0)
     {
         return (1);
     }
