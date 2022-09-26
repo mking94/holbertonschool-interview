@@ -8,14 +8,14 @@
 
 char *strrev(char *str)
 {
-  char ch[strlen(str)];
-  char *p;
-  for(int i = 0; i < strlen(str); i++)
-  {
-      ch[i] = str[strlen(str) -i - 1]; 
-  }
-  p = ch;
-  return p;
+char ch[strlen(str)];
+char *p;
+for (int i = 0; i < strlen(str); i++)
+{
+ch[i] = str[strlen(str) - i - 1];
+}
+p = ch;
+return (p);
 }
 
 /**
@@ -26,11 +26,11 @@ char *strrev(char *str)
 
 int is_palindrome(unsigned long n)
 {
-    char str[1 + (int)log10(n)];
-    sprintf(str, "%lu", n);
-    if(strcmp(str,strrev(str)) == 0)
-    {
-        return (1);
-    }
-    return (0);
+char str[1 + (int)log10(n)];
+sprintf(str, "%lu", n);
+if (strcmp(str, strrev(str)) == 0)
+{
+return (1);
+}
+return (0);
 }
