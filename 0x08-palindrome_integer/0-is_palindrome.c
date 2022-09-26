@@ -9,13 +9,12 @@
 char *strrev(char *str)
 {
 char ch[strlen(str)];
-char *p;
 for (int i = 0; i < strlen(str); i++)
 {
 ch[i] = str[strlen(str) - i - 1];
 }
-p = ch;
-return (p);
+str = ch;
+return (str);
 }
 
 /**
