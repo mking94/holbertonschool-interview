@@ -1,48 +1,95 @@
 #include "slide_line.h"
 
+/**
+ * swap - swaps two integers
+ * @xp: pointer to an int
+ * @yp: pointer to an int
+ */
+void swap(int *xp, int *yp)
+{
+	int temp = *xp;
+	*xp = *yp;
+	*yp = temp;
+}
+
+/**
+ * slide_left - slides an array of integers to the left,
+ * skipping all the zeros in between.
+ * @line: pointer to an array of integers.
+ * @size: size of line array
+ */
+void slide_left(int *line, size_t size)
+{
+	size_t i, p = 0;
+
+	for (i = 0; i < size && p < size; i++)
+	{
+		while (line[p] == 0 && p < size && p + 1 < size)
+			p++;
+		if (line[i] == 0)
+			swap(&line[p], &line[i]);
+		p++;
+
+	}
+}
+/**
+ * slide_righ - slides an array of integers to the right,
+ * skipping all the zeros in between.
+ * @line: pointer to an array of integers.
+ * @size: size of line array
+ */
+void slide_right(int *line, size_t size)
+{
+	size_t i, p = size - 1;
+
+	for (i = size - 1; (int)i >= 0 && (int)p >= 0; i--)
+	{
+		while (line[p] == 0 && (int)p > 0)
+			p--;
+		if (line[i] == 0)
+			swap(&line[p], &line[i]);
+		p--;
+
+	}
+
+}
+/**
+ * slide_line - slides and merges an array of integers
+ * @line: points to an array of integers
+ * @size: number of elements of array
+ * @direction: SLIDE_LEFT, SLIDE_RIGHT
+ * Return: 1 upon success, or 0 upon failure.
+ */
 int slide_line(int *line, size_t size, int direction)
 {
-	int *place_here = NULL;
-	int *left = NULL;
-	int *right = NULL;
+	size_t i = 0;
 
 	if (direction == SLIDE_LEFT)
 	{
-		place_here = line;
-		left = place_here;
-
-		while (left < line + (size - 1))
+		slide_left(line, size);
+		for (i = 0; i < size; i++)
 		{
-			while (*left == 0 && left < line + (size - 1))
+			if (line[i] == line[i + 1])
 			{
-				left++;
+				line[i] = line[i] + line[i + 1];
+				line[i + 1] = 0;
 			}
-			right = left + 1;
-			while (right < line + (size))
-			{
-				if (*right == *left)
-				{
-					*place_here = *left * 2;
-					if (place_here != left)
-					{
-						*left = 0;
-					}
-					*right = 0;
-					place_here++;
-					break;
-				}
-				else
-				{
-					right++;
-				}
-			}
-			left++;
 		}
-		if (*(line + size - 1) && !*place_here)
+		slide_left(line, size);
+		return (1);
+	} else if (direction == SLIDE_RIGHT)
+	{
+		slide_right(line, size);
+		for (i = size - 1; (int) i >= 0; i--)
 		{
-			*place_here = *(line + size - 1);
-			*(line + size - 1) = 0;
+			if (line[i] == line[i - 1])
+			{
+				line[i] = line[i] + line[i - 1];
+				line[i - 1] = 0;
+			}
 		}
+		slide_right(line, size);
+		return (1);
 	}
-	return (1);
+	return (0);
 }
