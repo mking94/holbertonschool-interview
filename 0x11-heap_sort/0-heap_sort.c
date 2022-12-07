@@ -27,7 +27,7 @@ void heap_sort(int *array, size_t size)
  *
  * Return: nothing
 */
-void heapify(int arr[], size_t size, int i)
+void heapify(int *arr, size_t size, int i)
 {
 	int largest = i;
 	int left = 2 * i + 1;
