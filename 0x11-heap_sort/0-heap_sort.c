@@ -1,4 +1,4 @@
-#include "heap.h"
+#include "sort.h"
 /**
  * heap_sort - Function that sort an array using heap
  * @array: input array
