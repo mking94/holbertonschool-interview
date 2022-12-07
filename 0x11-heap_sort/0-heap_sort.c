@@ -27,20 +27,20 @@ void heap_sort(int *array, size_t size)
  *
  * Return: nothing
 */
-void heapify(int arr[], int N, int i)
+void heapify(int arr[], size_t size, int i)
 {
 	int largest = i;
 	int left = 2 * i + 1;
 	int right = 2 * i + 2;
 
-	if (left < N && arr[left] > arr[largest])
+	if (left < (int)size && arr[left] > arr[largest])
 		largest = left;
-	if (right < N && arr[right] > arr[largest])
+	if (right < (int)size && arr[right] > arr[largest])
 		largest = right;
 	if (largest != i)
 	{
 		swap(&arr[i], &arr[largest]);
-		heapify(arr, N, largest);
+		heapify(arr, size, largest);
 	}
 }
 /**
@@ -56,4 +56,24 @@ void swap(int *a, int *b)
 
 	*a = *b;
 	*b = temp;
+}
+/**
+ * print_array - Prints an array of integers
+ *
+ * @array: The array to be printed
+ * @size: Number of elements in @array
+ */
+void print_array(const int *array, size_t size)
+{
+    size_t i;
+
+    i = 0;
+    while (array && i < size)
+    {
+        if (i > 0)
+            printf(", ");
+        printf("%d", array[i]);
+        ++i;
+    }
+    printf("\n");
 }
