@@ -39,7 +39,7 @@ void heapify(int *arr, size_t size, int i)
 		largest = right;
 	if (largest != i)
 	{
-		swap(&arr[i], &arr[largest]);
+		swap(&arr[i], &arr[largest], arr, size);
 		heapify(arr, size, largest);
 	}
 }
@@ -50,12 +50,13 @@ void heapify(int *arr, size_t size, int i)
  *
  * Return: nothing
 */
-void swap(int *a, int *b)
+void swap(int *a, int *b, int *array, size_t n)
 {
 	int temp = *a;
 
 	*a = *b;
 	*b = temp;
+	print_array(array, n);
 }
 /**
  * print_array - Prints an array of integers
