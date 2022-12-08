@@ -1,80 +1,73 @@
-#include "sort.h"
 /**
- * heap_sort - Function that sort an array using heap
- * @array: input array
+ * heap_sort - Build max heap
+ * @array: array
  * @size: size of array
- *
- * Return: nothing
  */
 void heap_sort(int *array, size_t size)
 {
-	for (int i = (int)(size / 2) - 1; i >= 0; i--)
-	{
-		heapify(array, size, i);
-	}
 
-	for (int i = (int)(size / 2) - 1; i >= 0; i--)
+	size_t i;
+
+	if (array == NULL)
+		return;
+
+	/* Build max heap */
+	for (i = size / 2 ; i > 0; i--)
+		heap_root(array, size, i - 1, size);
+
+	/* Heap sort */
+	for (i = size - 1; i > 0; i--)
 	{
-		swap(&array[0], &array[i]);
-		heapify(array, i, 0)
+		swap(&array[0], &array[i], array, size);
+
+		/* Heapify root element to get highest element at root again */
+		heap_root(array, i, 0, size);
 	}
 }
+
+
 /**
- * heapify - To heapify a subtree rooted with node i
- * @arr: the input array
- * @N: array size
- * @i: the node
- *
- * Return: nothing
-*/
-void heapify(int *arr, size_t size, int i)
+ * heap_root - Find largest among root, left child and right chil
+ * @arr: array
+ * @n: size array
+ * @i: current position
+ * @size: size
+ */
+void heap_root(int *arr, int n, int i, size_t size)
 {
+	/* Find largest among root, left child and right child */
+
 	int largest = i;
 	int left = 2 * i + 1;
 	int right = 2 * i + 2;
 
-	if (left < (int)size && arr[left] > arr[largest])
+	if (left < n && arr[left] > arr[largest])
 		largest = left;
-	if (right < (int)size && arr[right] > arr[largest])
+
+	if (right < n && arr[right] > arr[largest])
 		largest = right;
+
+	/* Swap and continue heapifying if root is not largest */
 	if (largest != i)
 	{
 		swap(&arr[i], &arr[largest], arr, size);
-		heapify(arr, size, largest);
+		heap_root(arr, n, largest, size);
 	}
+
 }
+
 /**
- * swap - Function swap
- * @a: first input
- * @b: seconde input
- *
- * Return: nothing
-*/
+ * swap - Function to swap the the position of two elements
+ * @a: first integer
+ * @b: second integer
+ * @array: array of numbers
+ * @n: size of array
+ */
 void swap(int *a, int *b, int *array, size_t n)
 {
-	int temp = *a;
 
+	int temp = *a;
 	*a = *b;
 	*b = temp;
 	print_array(array, n);
-}
-/**
- * print_array - Prints an array of integers
- *
- * @array: The array to be printed
- * @size: Number of elements in @array
- */
-void print_array(const int *array, size_t size)
-{
-    size_t i;
-
-    i = 0;
-    while (array && i < size)
-    {
-        if (i > 0)
-            printf(", ");
-        printf("%d", array[i]);
-        ++i;
-    }
-    printf("\n");
 }
