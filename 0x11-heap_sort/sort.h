@@ -3,7 +3,9 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-void heapify(int *arr, size_t size, int i);
-void heap_sort(int *array, size_t size);
+
 void print_array(const int *array, size_t size);
+void swap(int *a, int *b, int *array, size_t n);
+void heap_root(int *arr, int n, int i, size_t size);
+void heap_sort(int *array, size_t size);
 #endif
