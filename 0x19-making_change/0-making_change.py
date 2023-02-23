@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 '''Making Change module'''
 
-
 def makeChange(coins, total):
     '''Function that makes change for a given total'''
     if total < 1:
@@ -16,3 +15,4 @@ def makeChange(coins, total):
             return change
     if total != 0:
         return -1
+
