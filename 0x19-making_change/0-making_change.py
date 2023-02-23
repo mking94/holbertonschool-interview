@@ -1,3 +1,9 @@
+#!/usr/bin/python3
+"""
+Change comes from within
+"""
+
+
 def makeChange(coins, total):
     """
     ********************************************
@@ -13,20 +19,21 @@ def makeChange(coins, total):
             *** If total cannot be met by any number
                 of coins you have, return -1
     """
+    if (type(total) is not int or type(coins) is not list):
+        return -1
     if total <= 0:
         return 0
-
-    res = []
-    sub = [0]
-    #for i in range(len(coins)):
-    i = 0
-    while sum(sub) < total:
-        sub.append((coins[i] + coins[i-1]))
-        if (total - sum(sub)) >= 0:
-            res.append(total - sum(sub) + 1)
-        i += 1
-    print(res)
     try:
-        return min(res)
-    except:
+        Min = [float('inf') for i in range(total+1)]
+        Min[0] = 0
+        for i in range(1, total+1):
+            for j in range(len(coins)):
+                if Min[i - coins[j]] + 1 < Min[i]:
+                    Min[i] = Min[i - coins[j]] + 1
+
+        if Min[total] != float('inf'):
+            return Min[total]
+        else:
+            return -1
+    except Exception:
         return -1
