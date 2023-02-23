@@ -21,18 +21,18 @@ def makeChange(coins, total):
         coin in the list
     **********************************************************************
     """
-
-    num_of_coins = 0
-
-    if total <= 0:
+     if total <= 0:
         return 0
 
     coins = sorted(coins)
+    num_of_coins = 0
     aux = coins[::-1]
+    
     for coin in aux:
         x = total // coin
         num_of_coins += x
         total = total % coin
+
     if total != 0:
         return -1
 
