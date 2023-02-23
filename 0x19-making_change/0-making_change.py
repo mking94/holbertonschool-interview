@@ -20,21 +20,17 @@ def makeChange(coins, total):
         - You can assume you have an infinite number of each denomination of
         coin in the list
     """
-    if total <= 0:
+    if total < 1:
         return 0
+    change = 0
 
-    max_n = sys.maxsize
-    hash_t = [max_n for i in range(total + 1)]
-    hash_t[0] = 0
-    l = len(coins)
-    for d in range(1, total + 1):
-        for i in range(l):
-            if coins[i] <= d:
-                res = hash_t[d - coins[i]]
-                if res != max_n and res + 1 < hash_t[d]:
-                    hash_t[d] = res + 1
-
-    if hash_t[total] == max_n:
+    coins.sort(reverse=True)
+    for coin in coins:
+        temp_change = int(total / coin)
+        total -= (temp_change * coin)
+        change += temp_change
+        if total == 0:
+            return change
+ 
+    if total != 0:
         return -1
-
-    return hash_t[total]
