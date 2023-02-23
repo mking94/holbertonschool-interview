@@ -4,6 +4,27 @@ Change comes from within
 """
 
 
+def minCoins(coins, m, V): 
+    """ recursive """
+    # base case 
+    if (V == 0): 
+        return 0
+
+    # Initialize result 
+    res = sys.maxsize 
+      
+    # Try every coin that has smaller value than V 
+    for i in range(0, m): 
+        if (coins[i] <= V): 
+            sub_res = minCoins(coins, m, V-coins[i]) 
+
+            # Check for INT_MAX to avoid overflow and see if 
+            # result can minimized 
+            if (sub_res != sys.maxsize and sub_res + 1 < res): 
+                res = sub_res + 1
+
+    return res 
+
 def makeChange(coins, total):
     """
     ********************************************
@@ -19,21 +40,6 @@ def makeChange(coins, total):
             *** If total cannot be met by any number
                 of coins you have, return -1
     """
-    if (type(total) is not int or type(coins) is not list):
-        return -1
-    if total <= 0:
-        return 0
-    try:
-        Min = [float('inf') for i in range(total+1)]
-        Min[0] = 0
-        for i in range(1, total+1):
-            for j in range(len(coins)):
-                if Min[i - coins[j]] + 1 < Min[i]:
-                    Min[i] = Min[i - coins[j]] + 1
+    m = len(coins) 
 
-        if Min[total] != float('inf'):
-            return Min[total]
-        else:
-            return -1
-    except Exception:
-        return -1
+    return minCoins(coins, m, total)
