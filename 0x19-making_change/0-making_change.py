@@ -1,30 +1,3 @@
-#!/usr/bin/python3
-"""
-Change comes from within
-"""
-
-
-def minCoins(coins, m, V): 
-    """ recursive """
-    # base case 
-    if (V == 0): 
-        return 0
-
-    # Initialize result 
-    res = sys.maxsize 
-      
-    # Try every coin that has smaller value than V 
-    for i in range(0, m): 
-        if (coins[i] <= V): 
-            sub_res = minCoins(coins, m, V-coins[i]) 
-
-            # Check for INT_MAX to avoid overflow and see if 
-            # result can minimized 
-            if (sub_res != sys.maxsize and sub_res + 1 < res): 
-                res = sub_res + 1
-
-    return res 
-
 def makeChange(coins, total):
     """
     ********************************************
@@ -40,6 +13,20 @@ def makeChange(coins, total):
             *** If total cannot be met by any number
                 of coins you have, return -1
     """
-    m = len(coins) 
+    if total <= 0:
+        return 0
 
-    return minCoins(coins, m, total)
+    res = []
+    sub = [0]
+    #for i in range(len(coins)):
+    i = 0
+    while sum(sub) < total:
+        sub.append((coins[i] + coins[i-1]))
+        if (total - sum(sub)) >= 0:
+            res.append(total - sum(sub) + 1)
+        i += 1
+    print(res)
+    try:
+        return min(res)
+    except:
+        return -1
