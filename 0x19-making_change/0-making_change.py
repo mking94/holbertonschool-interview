@@ -24,16 +24,15 @@ def makeChange(coins, total):
     if total <= 0:
         return 0
     try:
-        Min = [float('inf') for i in range(total+1)]
-        Min[0] = 0
-        for i in range(1, total+1):
-            for j in range(len(coins)):
-                if Min[i - coins[j]] + 1 < Min[i]:
-                    Min[i] = Min[i - coins[j]] + 1
-
-        if Min[total] != float('inf'):
-            return Min[total]
-        else:
-            return -1
+        coins.sort()
+        coins.reverse()
+        fewest = 0
+        for coin in coins:
+            "" For loop """
+            if total <= 0:
+                break
+            buff = total // coin
+            fewest += buff
+            total -= (buff * coin)
     except Exception:
         return -1
