@@ -16,10 +16,17 @@ def makeChange(coins, total):
         - You can assume you have an infinite number of each denomination of
         coin in the list
     """
-    matrix = [total + 1] * (total + 1)
-    matrix[0] = 0
-    for n in range(1, total + 1):
-        for coin in coins:
-            if n - coin >= 0:
-                matrix[n] = min(matrix[n], 1 + matrix[n - coin])
-    return matrix[total] if matrix[total] < total + 1 else -1
+    if total < 1:
+        return 0
+    coins.sort()
+    coins.reverse()
+    fewest = 0
+    for coin in coins:
+        if total <= 0:
+            break
+        buff = total // coin
+        fewest += buff
+        total -= (buff * coin)
+    if total != 0:
+        return -1
+    return fewest
