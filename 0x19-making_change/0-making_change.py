@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 """
-**********~Making change~**********
+***********~Making change~***********
 Return the least number of coins need to return the total
 """
 
@@ -21,13 +21,17 @@ def makeChange(coins, total):
         coin in the list
     **********************************************************************
     """
+
     num_of_coins = 0
 
     if total <= 0:
         return 0
 
-    for coin in sorted(coins)[::-1]:
-        num_of_coins += total // coin
+    coins = sorted(coins)
+    aux = coins[::-1]
+    for coin in aux:
+        x = total // coin
+        num_of_coins += x
         total = total % coin
     if total != 0:
         return -1
