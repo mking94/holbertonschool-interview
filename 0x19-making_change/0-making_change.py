@@ -21,7 +21,7 @@ def makeChange(coins, total):
     """
     if (type(total) is not int or type(coins) is not list):
         return -1
-    if total <= 0:
+    if total < 0:
         return 0
     coins.sort()
     coins.reverse()
