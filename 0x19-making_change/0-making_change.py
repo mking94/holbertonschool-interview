@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+
 """
 *********MakingChange*********
 Task: Change comes from within
@@ -11,6 +12,7 @@ meet a given amount total
 def makeChange(coins, total):
     """
     *********************************************************************
+    *********************************************************************
     Given a pile of coins of different values, determine the fewest
     number of coins needed to meet a given amount total.
     Return: fewest number of coins needed to meet total
@@ -21,8 +23,10 @@ def makeChange(coins, total):
         - You can assume you have an infinite number of each denomination of
         coin in the list
     *************************************************************************
+    *************************************************************************
     """
     num_of_coins = 0
+
 
     if total <= 0:
         return 0
