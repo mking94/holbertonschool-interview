@@ -19,17 +19,14 @@ def makeChange(coins, total):
         - You can assume you have an infinite number of each denomination of
         coin in the list
     """
-    if total < 1:
-        return 0
-    change = 0
+    num_of_coins = 0
 
-    coins.sort(reverse=True)
-    for coin in coins:
-        temp_change = int(total / coin)
-        total -= (temp_change * coin)
-        change += temp_change
-        if total == 0:
-            return change
- 
+    if total <= 0:
+        return 0
+    for coin in sorted(coins)[::-1]:
+        num_of_coins += total // coin
+        total = total % coin
+
     if total != 0:
         return -1
+    return num_of_coins
