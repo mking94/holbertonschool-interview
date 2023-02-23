@@ -34,5 +34,8 @@ def makeChange(coins, total):
             buff = total // coin
             fewest += buff
             total -= (buff * coin)
+        if total != 0:
+            return -1
+        return fewset
     except Exception:
         return -1
