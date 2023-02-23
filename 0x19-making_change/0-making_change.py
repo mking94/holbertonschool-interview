@@ -18,11 +18,13 @@ def makeChange(coins, total):
         - The value of a coin will always be an integer greater than 0
         - You can assume you have an infinite number of each denomination of
         coin in the list
+
     """
     num_of_coins = 0
 
     if total <= 0:
         return 0
+
     for coin in sorted(coins)[::-1]:
         num_of_coins += total // coin
         total = total % coin
