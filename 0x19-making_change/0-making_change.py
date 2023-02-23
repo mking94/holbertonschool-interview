@@ -23,19 +23,16 @@ def makeChange(coins, total):
         return -1
     if total <= 0:
         return 0
-    try:
-        coins.sort()
-        coins.reverse()
-        fewest = 0
-        for coin in coins:
-            """ For loop """
-            if total <= 0:
-                break
-            buff = total // coin
-            fewest += buff
-            total -= (buff * coin)
+    coins.sort()
+    coins.reverse()
+    fewest = 0
+    for coin in coins:
+        """ For loop """
+        if total <= 0:
+            break
+        buff = total // coin
+        fewest += buff
+        total -= (buff * coin)
         if total != 0:
             return -1
         return fewset
-    except Exception:
-        return -1
