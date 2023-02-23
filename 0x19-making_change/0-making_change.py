@@ -8,6 +8,7 @@ Return the least number of coins need to return the total
 
 def makeChange(coins, total):
     """
+    *********************************************************************
     Change comes from within
     @coins: list of the coins available
     @total: total to return
@@ -18,6 +19,7 @@ def makeChange(coins, total):
         - The value of a coin will always be an integer greater than 0
         - You can assume you have an infinite number of each denomination of
         coin in the list
+    **********************************************************************
     """
     num_of_coins = 0
 
