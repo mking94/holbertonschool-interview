@@ -1,32 +1,40 @@
 #!/usr/bin/python3
 """
-Change comes from within
+0x19. Making Change, task 0. Change comes from within
 """
 
 
 def makeChange(coins, total):
     """
-    Given a pile of coins of different values, determine the fewest
-    number of coins needed to meet a given amount total.
-    Return: fewest number of coins needed to meet total
-        - If total is 0 or less, return 0
-        - If total cannot be met by any number of coins you have, return -1
-        - Coins is a list of the values of the coins in your possession
-        - The value of a coin will always be an integer greater than 0
-        - You can assume you have an infinite number of each denomination of
-        coin in the list
+    Given a set of coin denominations, determines the fewest coins needed to
+    meet a given total value.
+    Args:
+        coins (list of (int)s): list of coin denominations available
+        total (int): target total value
+    Return:
+        total amount of coins needed to meet `total` value
     """
-    if total < 1:
+    if type(total) is not int or type(coins) is not list or not all(
+            [type(coin) is int for coin in coins]):
+        print("Invalid args")
         return 0
-    coins.sort()
-    coins.reverse()
-    fewest = 0
-    for coin in coins:
-        if total <= 0:
+
+    if total <= 0:
+        return 0
+
+    coins.sort(reverse=True)
+
+    total_coins = 0
+    remainder = total
+    for denom in coins:
+        if denom <= remainder:
+            curr = remainder // denom
+            total_coins += curr
+            remainder -= curr * denom
+        if remainder == 0:
             break
-        buff = total // coin
-        fewest += buff
-        total -= (buff * coin)
-    if total != 0:
+
+    if total_coins == 0 or remainder != 0:
         return -1
-    return fewest
+
+    return total_coins
