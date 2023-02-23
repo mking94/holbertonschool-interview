@@ -38,3 +38,4 @@ def makeChange(coins, total):
         return -1
 
     return total_coins
+
