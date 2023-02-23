@@ -28,7 +28,7 @@ def makeChange(coins, total):
         coins.reverse()
         fewest = 0
         for coin in coins:
-            "" For loop """
+            """ For loop """
             if total <= 0:
                 break
             buff = total // coin
