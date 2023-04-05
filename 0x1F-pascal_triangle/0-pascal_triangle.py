@@ -3,8 +3,9 @@
 
 
 def pascal_triangle(n):
+    """ Function code """
     if n <= 0:
-        return []
+        return ([])
     pas_tri = [[1]]
     for i in range(0, n):
         aux = [1]
